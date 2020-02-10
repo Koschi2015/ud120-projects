@@ -4,10 +4,10 @@ import sys
 import pickle
 sys.path.append("../tools/")
 
-#from feature_format import featureFormat, targetFeatureSplit ''' old Version Py 2
-#from tester import dump_classifier_and_data ''' old Version Py 2
+#from feature_format import featureFormat, targetFeatureSplit ''' old Version Py 2 '''
+#from tester import dump_classifier_and_data ''' old Version Py 2 '''
 from tools.feature_format import featureFormat, targetFeatureSplit
-from .tester import dump_classifier_and_data
+from final_project.tester import dump_classifier_and_data
 
 ### Task 1: Select what features you'll use.
 ### features_list is a list of strings, each of which is a feature name.
@@ -15,8 +15,22 @@ from .tester import dump_classifier_and_data
 features_list = ['poi','salary'] # You will need to use more features
 
 ### Load the dictionary containing the dataset
-with open("final_project_dataset.pkl", "r") as data_file:
-    data_dict = pickle.load(data_file)
+#with open("final_project_dataset.pkl", "r") as data_file: ''' old Version Py2'''
+outsize = 0
+content = ''  
+
+with open("final_project_dataset.pkl", 'rb') as data_file:
+    content = data_file.read()
+
+with open("final_project_dataset_new.pkl", 'wb') as output:
+    for line in content.splitlines():
+        line = line.decode() + '\n'
+        line = line.encode()
+        outsize += len(line) + 1
+        output.write(line)
+        
+with open("final_project_dataset_new.pkl", 'rb') as data_file2:        
+    data_dict = pickle.load(data_file2)
 
 ### Task 2: Remove outliers
 ### Task 3: Create new feature(s)
