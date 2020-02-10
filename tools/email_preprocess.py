@@ -1,14 +1,13 @@
 #!/usr/bin/python
 
 import pickle
-import cPickle
+import pickle as cPickle
 import numpy
 
-from sklearn import cross_validation
+#from sklearn import cross_validation ''' old Version Py 2
+import sklearn.model_selection as cross_validation
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_selection import SelectPercentile, f_classif
-
-
 
 def preprocess(words_file = "../tools/word_data.pkl", authors_file="../tools/email_authors.pkl"):
     """ 
@@ -59,7 +58,7 @@ def preprocess(words_file = "../tools/word_data.pkl", authors_file="../tools/ema
     features_test_transformed  = selector.transform(features_test_transformed).toarray()
 
     ### info on the data
-    print "no. of Chris training emails:", sum(labels_train)
-    print "no. of Sara training emails:", len(labels_train)-sum(labels_train)
+    print("no. of Chris training emails:", sum(labels_train))
+    print( "no. of Sara training emails:", len(labels_train)-sum(labels_train))
     
     return features_train_transformed, features_test_transformed, labels_train, labels_test

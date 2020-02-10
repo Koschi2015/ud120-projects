@@ -4,8 +4,10 @@ import sys
 import pickle
 sys.path.append("../tools/")
 
-from feature_format import featureFormat, targetFeatureSplit
-from tester import dump_classifier_and_data
+#from feature_format import featureFormat, targetFeatureSplit ''' old Version Py 2
+#from tester import dump_classifier_and_data ''' old Version Py 2
+from tools.feature_format import featureFormat, targetFeatureSplit
+from .tester import dump_classifier_and_data
 
 ### Task 1: Select what features you'll use.
 ### features_list is a list of strings, each of which is a feature name.
@@ -43,7 +45,8 @@ clf = GaussianNB()
 ### http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.StratifiedShuffleSplit.html
 
 # Example starting point. Try investigating other evaluation techniques!
-from sklearn.cross_validation import train_test_split
+#from sklearn.cross_validation import train_test_split ''' old Version Py 2
+from sklearn.model_selection import train_test_split
 features_train, features_test, labels_train, labels_test = \
     train_test_split(features, labels, test_size=0.3, random_state=42)
 
